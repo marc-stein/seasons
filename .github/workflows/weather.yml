@@ -1,0 +1,27 @@
+name: Daily weather
+
+on:
+  schedule:
+    - cron: "17 11 * * *"   # about 6:17 a.m. in Towson (11:17 UTC)
+  workflow_dispatch:         # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/fetch_weather.py
+      - name: Commit if changed
+        run: |
+          git config user.name "almanac-bot"
+          git config user.email "almanac-bot@users.noreply.github.com"
+          git add data/weather.csv
+          git diff --cached --quiet || git commit -m "Weather through $(date -u -d yesterday +%F)"
+          git pull --rebase
+          git push

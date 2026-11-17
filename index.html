@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seasons Log</title>
+<link rel="icon" href="data:,">
+<style>
+  :root { --bg:#fbfaf7; --fg:#222; --muted:#777; --line:#ddd; --hi:#f1ead8; --accent:#7a5c1e; --card:#fff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#1b1b1a; --fg:#e8e6e1; --muted:#999; --line:#3a3a38; --hi:#3a3423; --accent:#d9b25f; --card:#242423; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--fg); }
+  header { padding:14px 24px; border-bottom:1px solid var(--line); display:flex; gap:16px; align-items:baseline; flex-wrap:wrap; }
+  header h1 { font-size:18px; margin:0; font-weight:600; }
+  header .today { color:var(--muted); }
+  header .spacer { flex:1; }
+  button, select, input, textarea { font:inherit; color:inherit; }
+  button { background:var(--card); border:1px solid var(--line); border-radius:6px; padding:4px 10px; cursor:pointer; }
+  button.primary { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+  button.link { border:none; background:none; color:var(--muted); padding:0 4px; }
+  main { display:grid; grid-template-columns: minmax(0,1fr) 360px; gap:24px; padding:20px 24px; max-width:1400px; }
+  @media (max-width: 1000px) { main { grid-template-columns: 1fr; } }
+  h2 { font-size:17px; margin:0 0 4px; }
+  h3 { font-size:14px; margin:18px 0 6px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; }
+  .muted { color:var(--muted); }
+  .year { display:grid; grid-template-columns: 70px repeat(6, minmax(0,1fr)); gap:4px; margin-bottom:18px; }
+  .year .season { color:var(--muted); font-size:12px; align-self:center; }
+  .cell { border:1px solid var(--line); background:var(--card); border-radius:6px; padding:5px 7px; cursor:pointer; min-height:54px; font-size:12px; position:relative; }
+  .cell b { font-weight:600; font-size:12.5px; display:block; line-height:1.2; padding-right:14px; }
+  .cell .d { color:var(--muted); }
+  .cell.now { outline:2px solid var(--accent); }
+  .cell.sel { background:var(--hi); }
+  .cell .n { position:absolute; right:6px; top:4px; color:var(--accent); font-size:11px; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; }
+  th, td { text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-weight:600; color:var(--muted); font-size:12.5px; }
+  td.num, th.num { text-align:right; white-space:nowrap; }
+  tr.now td { background:var(--hi); }
+  input[type=text], input[type=date], input[type=time], select, textarea, input[type=password] {
+    width:100%; background:var(--card); border:1px solid var(--line); border-radius:6px; padding:5px 8px; }
+  input.inline { border:1px dashed var(--line); background:transparent; padding:2px 6px; }
+  textarea { min-height:80px; resize:vertical; }
+  label { display:block; font-size:12.5px; color:var(--muted); margin:8px 0 2px; }
+  .row { display:flex; gap:8px; } .row > * { flex:1; }
+  aside .box { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin-bottom:16px; }
+  .entry { border-bottom:1px solid var(--line); padding:6px 0; }
+  .entry .meta { font-size:12px; color:var(--muted); }
+  .tag { display:inline-block; font-size:11px; border:1px solid var(--line); border-radius:10px; padding:0 7px; margin-right:4px; }
+  .tag.phase { border-color:var(--accent); color:var(--accent); }
+  .banner { padding:8px 24px; background:var(--hi); font-size:13px; }
+  .status { font-size:12.5px; color:var(--muted); min-height:18px; margin-top:6px; }
+  details summary { cursor:pointer; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Seasons Log</h1>
+  <span class="today" id="today"></span>
+  <span class="spacer"></span>
+  <button class="link" id="goNow">Go to now</button>
+  <button class="link" id="openSettings">Settings</button>
+</header>
+<div class="banner" id="banner" hidden></div>
+<main>
+  <section>
+    <div id="year"></div>
+    <div id="period"></div>
+  </section>
+  <aside>
+    <div class="box">
+      <h2>New observation</h2>
+      <div class="row">
+        <div><label>Date</label><input type="date" id="fDate"></div>
+        <div><label>Time</label><input type="time" id="fTime"></div>
+      </div>
+      <label>Place</label><input type="text" id="fPlace" placeholder="e.g. back step, Hampton Lane walk">
+      <div class="row">
+        <div><label>Lens</label><select id="fLens"></select></div>
+        <div><label>First / full / last</label><select id="fPhase"></select></div>
+      </div>
+      <label>What you noticed</label><textarea id="fNote"></textarea>
+      <div style="margin-top:10px"><button class="primary" id="fSave">Save</button></div>
+      <div class="status" id="fStatus"></div>
+    </div>
+    <div class="box" id="settings" hidden>
+      <h2>Settings</h2>
+      <p class="muted" style="font-size:13px;margin:4px 0">To save from this page, give it a GitHub token that can write to this repository's contents. It is kept only in this browser.</p>
+      <label>GitHub owner</label><input type="text" id="sOwner">
+      <label>Repository</label><input type="text" id="sRepo">
+      <label>Branch</label><input type="text" id="sBranch" placeholder="main">
+      <label>Token</label><input type="password" id="sToken">
+      <div style="margin-top:10px"><button class="primary" id="sSave">Save settings</button></div>
+      <h3>Backup</h3>
+      <button id="dlEntries">Download entries.json</button>
+      <button id="dlAll">Download all data</button>
+    </div>
+  </aside>
+</main>
+
+<script>
+"use strict";
+// ---------- constants ----------
+const LENSES = [
+  ["light", "Light"], ["air", "Air"], ["sound", "Sound"],
+  ["smell", "Smell"], ["living", "Living things"], ["human", "Human life"]
+];
+const PHASES = [["", "—"], ["first", "First"], ["full", "Full"], ["last", "Last"], ["not yet", "Not yet"]];
+const FILES = {
+  calendar: "data/calendar.json", names: "data/names.json", weather: "data/weather.csv",
+  entries: "log/entries.json", summaries: "log/summaries.json"
+};
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+// ---------- state ----------
+const S = { cal:null, names:{}, weather:[], entries:[], summaries:{}, sha:{}, sel:null, selYear:null };
+
+// ---------- small helpers ----------
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("seasonslog." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("seasonslog." + k, JSON.stringify(v)); } catch {} }
+};
+const fC = f => (f - 32) * 5 / 9;
+const temp = f => (f == null || isNaN(f)) ? "—" : `${Math.round(f)}°F (${Math.round(fC(f))}°C)`;
+const amt = i => (i == null || isNaN(i)) ? "—" : (i < 0.05 ? (i > 0 ? "trace" : "0") : `${i.toFixed(1)} in (${Math.round(i * 25.4)} mm)`);
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+const md = s => { const [m,d] = s.split("-").map(Number); return `${MONTHS[m-1]} ${d}`; };
+
+// Season year: the season starting Feb 4 of year y runs to Feb 3 of y+1.
+function seasonYear(d) { return (d.getMonth() > 1 || (d.getMonth() === 1 && d.getDate() >= 4)) ? d.getFullYear() : d.getFullYear() - 1; }
+// Actual date a "MM-DD" start falls on within season y.
+function inSeason(mmdd, y) {
+  const [m, d] = mmdd.split("-").map(Number);
+  const nextYear = m < 2 || (m === 2 && d < 4);
+  return new Date(nextYear ? y + 1 : y, m - 1, d);
+}
+function periodOf(d) {
+  if (d.getMonth() === 1 && d.getDate() === 29) d = new Date(d.getFullYear(), 1, 28);
+  const y = seasonYear(d);
+  let p = S.cal.periods[0];
+  for (const q of S.cal.periods) if (inSeason(q.start, y) <= d) p = q;
+  let sub = p.subs[0];
+  for (const s of p.subs) if (inSeason(s.start, y) <= d) sub = s;
+  return { year: y, period: p, sub };
+}
+function displayName(obj) { const n = S.names[String(obj.id)]; return n ? n : obj.name; }
+
+// ---------- data loading ----------
+function cfg() { return store.get("cfg", { owner:"", repo:"", branch:"main", token:"" }); }
+function canSave() { const c = cfg(); return !!(c.owner && c.repo && c.token); }
+
+function b64decode(b) { return new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\n/g,"")), c => c.charCodeAt(0))); }
+function b64encode(s) { const bytes = new TextEncoder().encode(s); let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b)); return btoa(bin); }
+
+async function ghGet(path) {
+  const c = cfg();
+  const r = await fetch(`https://api.github.com/repos/${c.owner}/${c.repo}/contents/${path}?ref=${encodeURIComponent(c.branch||"main")}`,
+    { headers: { Authorization: `Bearer ${c.token}`, Accept: "application/vnd.github+json" }, cache: "no-store" });
+  if (r.status === 404) return { text: null, sha: null };
+  if (!r.ok) throw new Error(`GitHub read failed (${r.status}) for ${path}`);
+  const j = await r.json();
+  return { text: b64decode(j.content), sha: j.sha };
+}
+async function ghPut(path, text, sha, message) {
+  const c = cfg();
+  const body = { message, content: b64encode(text), branch: c.branch || "main" };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${c.owner}/${c.repo}/contents/${path}`,
+    { method: "PUT", headers: { Authorization: `Bearer ${c.token}`, Accept: "application/vnd.github+json" }, body: JSON.stringify(body) });
+  if (!r.ok) throw new Error(`GitHub save failed (${r.status}): ${(await r.text()).slice(0,200)}`);
+  return (await r.json()).content.sha;
+}
+async function readFile(path) {
+  if (canSave()) { const { text, sha } = await ghGet(path); S.sha[path] = sha; return text; }
+  const r = await fetch(path, { cache: "no-store" });
+  return r.ok ? await r.text() : null;
+}
+function parseCSV(t) {
+  if (!t) return [];
+  const [head, ...lines] = t.trim().split(/\r?\n/);
+  const keys = head.split(",");
+  return lines.filter(Boolean).map(l => {
+    const v = l.split(","); const o = {};
+    keys.forEach((k, i) => o[k] = k === "date" ? v[i] : parseFloat(v[i]));
+    return o;
+  });
+}
+async function loadAll() {
+  const [cal, names, weather, entries, summaries] = await Promise.all(
+    [FILES.calendar, FILES.names, FILES.weather, FILES.entries, FILES.summaries].map(p => readFile(p).catch(e => { banner(e.message); return null; })));
+  S.cal = JSON.parse(cal);
+  S.names = names ? JSON.parse(names) : {};
+  S.weather = parseCSV(weather);
+  S.entries = entries ? JSON.parse(entries) : [];
+  S.summaries = summaries ? JSON.parse(summaries) : {};
+}
+
+// Read-modify-write against the latest copy, so saves never clobber each other.
+async function update(key, mutate, message) {
+  const path = FILES[key];
+  if (!canSave()) {
+    S[key] = mutate(structuredClone(S[key]));
+    banner("Not saved to GitHub: this page has no token yet (Settings). Your change is held in this tab only; use Download to keep it.");
+    return;
+  }
+  const { text, sha } = await ghGet(path);
+  const latest = text ? JSON.parse(text) : (Array.isArray(S[key]) ? [] : {});
+  const next = mutate(latest);
+  S.sha[path] = await ghPut(path, JSON.stringify(next, null, 1) + "\n", sha, message);
+  S[key] = next;
+}
+
+// ---------- weather summaries ----------
+function actuals(y, startMMDD, endMMDD) {
+  const a = iso(inSeason(startMMDD, y)), b = iso(inSeason(endMMDD, y));
+  const days = S.weather.filter(w => w.date >= a && w.date <= b);
+  if (!days.length) return null;
+  const avg = k => days.reduce((s, w) => s + w[k], 0) / days.length;
+  const sum = k => days.reduce((s, w) => s + w[k], 0);
+  return { n: days.length, high_f: avg("high_f"), low_f: avg("low_f"), precip_in: sum("precip_in"), snow_in: sum("snow_in"),
+           min_f: Math.min(...days.map(w => w.low_f)), freezes: days.filter(w => w.low_f <= 32).length };
+}
+
+// ---------- rendering ----------
+function banner(msg) { const b = $("banner"); b.textContent = msg; b.hidden = !msg; }
+
+function renderToday() {
+  const now = periodOf(new Date());
+  const p = now.period, s = now.sub;
+  const start = inSeason(p.start, now.year);
+  const day = Math.floor((new Date() - start) / 86400000) + 1;
+  $("today").textContent = `${new Date().toDateString()} · Period ${p.id}, ${displayName(p)} · sub-period ${s.id} (${md(s.start)}–${md(s.end)}) · day ${day} of ${p.days}`;
+}
+
+function renderYear() {
+  const now = periodOf(new Date());
+  const counts = {};
+  for (const e of S.entries) { const q = periodOf(parse(e.date)); if (q.year === S.selYear) counts[q.period.id] = (counts[q.period.id] || 0) + 1; }
+  const seasons = ["Spring", "Summer", "Autumn", "Winter"];
+  let h = `<div class="year">`;
+  seasons.forEach((sn, i) => {
+    h += `<div class="season">${sn}</div>`;
+    S.cal.periods.slice(i * 6, i * 6 + 6).forEach(p => {
+      const cls = ["cell", p.id === now.period.id && S.selYear === now.year ? "now" : "", p.id === S.sel ? "sel" : ""].join(" ");
+      h += `<div class="${cls}" data-p="${p.id}">${counts[p.id] ? `<span class="n">${counts[p.id]}</span>` : ""}
+        <b>${p.id}. ${esc(displayName(p))}</b><span class="d">${md(p.start)}</span></div>`;
+    });
+  });
+  h += `</div>`;
+  $("year").innerHTML = h;
+  $("year").querySelectorAll(".cell").forEach(c => c.onclick = () => { S.sel = +c.dataset.p; render(); });
+}
+
+function seasonYears() {
+  const ys = new Set([periodOf(new Date()).year]);
+  S.entries.forEach(e => ys.add(periodOf(parse(e.date)).year));
+  S.weather.forEach(w => ys.add(periodOf(parse(w.date)).year));
+  return [...ys].sort((a, b) => b - a);
+}
+
+function renderPeriod() {
+  const p = S.cal.periods.find(q => q.id === S.sel);
+  const y = S.selYear, now = periodOf(new Date());
+  const act = actuals(y, p.start, p.end);
+  const years = seasonYears();
+  const yearOpts = years.map(v => `<option value="${v}" ${v === y ? "selected" : ""}>${v}–${String(v + 1).slice(2)}</option>`).join("");
+
+  let h = `<h2>${p.id}. ${esc(p.name)}</h2>
+    <div class="muted">${p.season} · ${md(p.start)}–${md(p.end)} · ${p.days} days ·
+      season <select id="yearSel" style="width:auto;display:inline-block;padding:1px 4px">${yearOpts}</select></div>
+    <label>Our name for this period</label>
+    <input type="text" class="inline" id="pName" value="${esc(S.names[String(p.id)] || "")}" placeholder="not yet named">
+
+    <h3>Weather</h3>
+    <table>
+      <tr><th></th><th class="num">Avg high</th><th class="num">Avg low</th><th class="num">Precipitation</th><th class="num">Snow</th></tr>
+      <tr><td>Normal (1991–2020)</td><td class="num">${temp(p.normals.high_f)}</td><td class="num">${temp(p.normals.low_f)}</td>
+          <td class="num">${amt(p.normals.precip_in)}</td><td class="num">${amt(p.normals.snow_in)}</td></tr>
+      <tr><td>${y}–${String(y+1).slice(2)}${act ? ` <span class="muted">(${act.n} of ${p.days} days)</span>` : ""}</td>
+          ${act ? `<td class="num">${temp(act.high_f)}</td><td class="num">${temp(act.low_f)}</td><td class="num">${amt(act.precip_in)}</td><td class="num">${amt(act.snow_in)}</td>`
+                : `<td colspan="4" class="muted">no weather recorded yet</td>`}</tr>
+    </table>
+    ${act ? `<div class="muted" style="font-size:12.5px;margin-top:4px">Coldest night ${temp(act.min_f)} · nights at or below freezing: ${act.freezes}</div>` : ""}
+
+    <h3>Sub-periods</h3>
+    <table>
+      <tr><th>#</th><th>Dates</th><th>Our name</th><th class="num">Normal high / low</th><th class="num">${y}–${String(y+1).slice(2)} high / low</th><th class="num">Observations</th></tr>`;
+  for (const s of p.subs) {
+    const a = actuals(y, s.start, s.end);
+    const n = S.entries.filter(e => { const q = periodOf(parse(e.date)); return q.year === y && q.sub.id === s.id; }).length;
+    const isNow = y === now.year && s.id === now.sub.id;
+    h += `<tr class="${isNow ? "now" : ""}"><td>${s.id}</td><td>${md(s.start)}–${md(s.end)}</td>
+      <td><input type="text" class="inline subName" data-id="${s.id}" value="${esc(S.names[s.id] || "")}" placeholder="—"></td>
+      <td class="num">${temp(s.normals.high_f)} / ${temp(s.normals.low_f)}</td>
+      <td class="num">${a ? `${temp(a.high_f)} / ${temp(a.low_f)}` : "—"}</td><td class="num">${n || ""}</td></tr>`;
+  }
+  h += `</table>`;
+
+  // summary for this period and season
+  const key = `${y}:${p.id}`;
+  h += `<h3>What this stretch was like, ${y}–${String(y+1).slice(2)}</h3>
+    <textarea id="pSummary" placeholder="A sentence or two, written when the period ends.">${esc(S.summaries[key] || "")}</textarea>
+    <div style="margin-top:6px"><button id="pSummarySave">Save summary</button> <span class="status" id="pStatus"></span></div>`;
+
+  // entries: this season first, then same period in other seasons
+  h += `<h3>Observations</h3>`;
+  const byYear = {};
+  for (const e of S.entries) { const q = periodOf(parse(e.date)); if (q.period.id === p.id) (byYear[q.year] ||= []).push(e); }
+  const ys = Object.keys(byYear).map(Number).sort((a, b) => (a === y ? -1 : b === y ? 1 : b - a));
+  if (!ys.length) h += `<div class="muted">None yet.</div>`;
+  for (const yy of ys) {
+    const list = byYear[yy].sort((a, b) => (b.date + (b.time||"")).localeCompare(a.date + (a.time||"")));
+    const inner = list.map(e => `<div class="entry"><div class="meta">${esc(e.date)} ${esc(e.time || "")} · ${esc(e.place || "")}
+        <button class="link del" data-id="${esc(e.id)}" title="Delete">×</button></div>
+        <span class="tag">${esc((LENSES.find(l => l[0] === e.lens) || [0, e.lens])[1])}</span>${e.phase ? `<span class="tag phase">${esc(e.phase)}</span>` : ""}
+        ${esc(e.note)}</div>`).join("");
+    const label = `${yy}–${String(yy+1).slice(2)} (${list.length})`;
+    h += yy === y ? `<div><b>${label}</b>${inner}</div>` : `<details><summary>${label}</summary>${inner}</details>`;
+  }
+
+  $("period").innerHTML = h;
+
+  $("yearSel").onchange = e => { S.selYear = +e.target.value; render(); };
+  $("pName").onchange = e => saveName(String(p.id), e.target.value.trim());
+  document.querySelectorAll(".subName").forEach(i => i.onchange = e => saveName(i.dataset.id, e.target.value.trim()));
+  $("pSummarySave").onclick = async () => {
+    const v = $("pSummary").value.trim();
+    try { $("pStatus").textContent = "Saving…";
+      await update("summaries", s => { if (v) s[key] = v; else delete s[key]; return s; }, `Summary for period ${p.id}, ${y}`);
+      $("pStatus").textContent = canSave() ? "Saved." : ""; }
+    catch (err) { $("pStatus").textContent = err.message; }
+  };
+  document.querySelectorAll(".del").forEach(b => b.onclick = async () => {
+    if (!confirm("Delete this observation?")) return;
+    try { await update("entries", list => list.filter(e => e.id !== b.dataset.id), `Delete observation ${b.dataset.id}`); render(); }
+    catch (err) { banner(err.message); }
+  });
+}
+
+async function saveName(id, v) {
+  try { await update("names", n => { if (v) n[id] = v; else delete n[id]; return n; }, `Name for ${id}`); render(); }
+  catch (err) { banner(err.message); }
+}
+
+function render() { renderToday(); renderYear(); renderPeriod(); }
+
+// ---------- form ----------
+function initForm() {
+  $("fLens").innerHTML = LENSES.map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
+  $("fPhase").innerHTML = PHASES.map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
+  const now = new Date();
+  $("fDate").value = iso(now);
+  $("fTime").value = `${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
+  $("fPlace").value = store.get("lastPlace", "");
+  $("fSave").onclick = async () => {
+    const note = $("fNote").value.trim();
+    if (!note) { $("fStatus").textContent = "Write what you noticed first."; return; }
+    const e = { id: `${$("fDate").value}-${Math.random().toString(36).slice(2, 8)}`, date: $("fDate").value, time: $("fTime").value,
+                place: $("fPlace").value.trim(), lens: $("fLens").value, phase: $("fPhase").value, note };
+    store.set("lastPlace", e.place);
+    $("fStatus").textContent = "Saving…";
+    try {
+      await update("entries", list => { list.push(e); return list; }, `Observation ${e.date} (${e.lens})`);
+      $("fNote").value = ""; $("fPhase").value = "";
+      $("fStatus").textContent = canSave() ? "Saved." : "Held in this tab only.";
+      const q = periodOf(parse(e.date)); S.sel = q.period.id; S.selYear = q.year; render();
+    } catch (err) { $("fStatus").textContent = err.message; }
+  };
+}
+
+function initSettings() {
+  const c = cfg();
+  $("sOwner").value = c.owner; $("sRepo").value = c.repo; $("sBranch").value = c.branch || "main"; $("sToken").value = c.token;
+  // On GitHub Pages, guess owner/repo from the address.
+  const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+  if (m && !c.owner) { $("sOwner").value = m[1]; $("sRepo").value = location.pathname.split("/").filter(Boolean)[0] || ""; }
+  $("openSettings").onclick = () => $("settings").hidden = !$("settings").hidden;
+  $("sSave").onclick = async () => {
+    store.set("cfg", { owner: $("sOwner").value.trim(), repo: $("sRepo").value.trim(), branch: $("sBranch").value.trim() || "main", token: $("sToken").value.trim() });
+    try { await loadAll(); banner(""); render(); $("settings").hidden = true; } catch (err) { banner(err.message); }
+  };
+  const dl = (name, text) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type: "application/json" })); a.download = name; a.click(); };
+  $("dlEntries").onclick = () => dl("entries.json", JSON.stringify(S.entries, null, 1) + "\n");
+  $("dlAll").onclick = () => dl("seasons-log-backup.json", JSON.stringify({ names: S.names, entries: S.entries, summaries: S.summaries }, null, 1));
+  $("goNow").onclick = () => { const q = periodOf(new Date()); S.sel = q.period.id; S.selYear = q.year; render(); };
+}
+
+(async function start() {
+  initSettings(); initForm();
+  try { await loadAll(); }
+  catch (err) { banner("Could not load data: " + err.message + " (open this page through a web server or GitHub Pages, not as a file)"); return; }
+  if (!canSave()) banner("Read-only until you add a GitHub token in Settings.");
+  const q = periodOf(new Date()); S.sel = q.period.id; S.selYear = q.year;
+  render();
+})();
+</script>
+</body>
+</html>

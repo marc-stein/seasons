@@ -1,0 +1,1283 @@
+{
+ "about": "The year in 24 periods (about 15 days) and 72 sub-periods (about 5 days). Start dates are a fixed table: a shared idea, not a precise astronomical instrument. Period names are plain-English placeholders; our_name fills in as observation earns it.",
+ "normals_source": "NOAA 1991-2020 monthly normals, Baltimore/Washington International airport (station USW00093721), about 26 km (16 mi) from Towson; spread into periods by straight-line interpolation (temperature) and day-weighting (precipitation, snow). Rough.",
+ "center": {
+  "place": "Towson, Maryland",
+  "lat": 39.4,
+  "lon": -76.6
+ },
+ "periods": [
+  {
+   "id": 1,
+   "season": "Spring",
+   "name": "Beginning of spring",
+   "our_name": "",
+   "start": "02-04",
+   "end": "02-18",
+   "days": 15,
+   "normals": {
+    "high_f": 45.7,
+    "low_f": 26.8,
+    "precip_in": 1.55,
+    "snow_in": 4.02
+   },
+   "subs": [
+    {
+     "id": "1.1",
+     "start": "02-04",
+     "end": "02-08",
+     "our_name": "",
+     "normals": {
+      "high_f": 45.1,
+      "low_f": 26.4,
+      "precip_in": 0.52,
+      "snow_in": 1.34
+     }
+    },
+    {
+     "id": "1.2",
+     "start": "02-09",
+     "end": "02-13",
+     "our_name": "",
+     "normals": {
+      "high_f": 45.6,
+      "low_f": 26.7,
+      "precip_in": 0.52,
+      "snow_in": 1.34
+     }
+    },
+    {
+     "id": "1.3",
+     "start": "02-14",
+     "end": "02-18",
+     "our_name": "",
+     "normals": {
+      "high_f": 46.4,
+      "low_f": 27.3,
+      "precip_in": 0.52,
+      "snow_in": 1.34
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "season": "Spring",
+   "name": "Rainwater",
+   "our_name": "",
+   "start": "02-19",
+   "end": "03-05",
+   "days": 15,
+   "normals": {
+    "high_f": 49.5,
+    "low_f": 29.8,
+    "precip_in": 1.68,
+    "snow_in": 3.13
+   },
+   "subs": [
+    {
+     "id": "2.1",
+     "start": "02-19",
+     "end": "02-23",
+     "our_name": "",
+     "normals": {
+      "high_f": 47.9,
+      "low_f": 28.5,
+      "precip_in": 0.52,
+      "snow_in": 1.34
+     }
+    },
+    {
+     "id": "2.2",
+     "start": "02-24",
+     "end": "02-28",
+     "our_name": "",
+     "normals": {
+      "high_f": 49.5,
+      "low_f": 29.8,
+      "precip_in": 0.52,
+      "snow_in": 1.34
+     }
+    },
+    {
+     "id": "2.3",
+     "start": "03-01",
+     "end": "03-05",
+     "our_name": "",
+     "normals": {
+      "high_f": 51.1,
+      "low_f": 31.0,
+      "precip_in": 0.65,
+      "snow_in": 0.45
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "season": "Spring",
+   "name": "Insects awaken",
+   "our_name": "",
+   "start": "03-06",
+   "end": "03-20",
+   "days": 15,
+   "normals": {
+    "high_f": 54.4,
+    "low_f": 33.6,
+    "precip_in": 1.94,
+    "snow_in": 1.35
+   },
+   "subs": [
+    {
+     "id": "3.1",
+     "start": "03-06",
+     "end": "03-10",
+     "our_name": "",
+     "normals": {
+      "high_f": 52.8,
+      "low_f": 32.2,
+      "precip_in": 0.65,
+      "snow_in": 0.45
+     }
+    },
+    {
+     "id": "3.2",
+     "start": "03-11",
+     "end": "03-15",
+     "our_name": "",
+     "normals": {
+      "high_f": 54.4,
+      "low_f": 33.5,
+      "precip_in": 0.65,
+      "snow_in": 0.45
+     }
+    },
+    {
+     "id": "3.3",
+     "start": "03-16",
+     "end": "03-20",
+     "our_name": "",
+     "normals": {
+      "high_f": 56.2,
+      "low_f": 35.0,
+      "precip_in": 0.65,
+      "snow_in": 0.45
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "season": "Spring",
+   "name": "Spring equinox",
+   "our_name": "",
+   "start": "03-21",
+   "end": "04-04",
+   "days": 15,
+   "normals": {
+    "high_f": 60.0,
+    "low_f": 38.2,
+    "precip_in": 1.87,
+    "snow_in": 0.99
+   },
+   "subs": [
+    {
+     "id": "4.1",
+     "start": "03-21",
+     "end": "03-25",
+     "our_name": "",
+     "normals": {
+      "high_f": 58.1,
+      "low_f": 36.6,
+      "precip_in": 0.65,
+      "snow_in": 0.45
+     }
+    },
+    {
+     "id": "4.2",
+     "start": "03-26",
+     "end": "03-30",
+     "our_name": "",
+     "normals": {
+      "high_f": 60.0,
+      "low_f": 38.2,
+      "precip_in": 0.65,
+      "snow_in": 0.45
+     }
+    },
+    {
+     "id": "4.3",
+     "start": "03-31",
+     "end": "04-04",
+     "our_name": "",
+     "normals": {
+      "high_f": 62.0,
+      "low_f": 39.8,
+      "precip_in": 0.58,
+      "snow_in": 0.09
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "season": "Spring",
+   "name": "Pure and clear",
+   "our_name": "",
+   "start": "04-05",
+   "end": "04-19",
+   "days": 15,
+   "normals": {
+    "high_f": 65.8,
+    "low_f": 43.0,
+    "precip_in": 1.7,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "5.1",
+     "start": "04-05",
+     "end": "04-09",
+     "our_name": "",
+     "normals": {
+      "high_f": 63.9,
+      "low_f": 41.4,
+      "precip_in": 0.57,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "5.2",
+     "start": "04-10",
+     "end": "04-14",
+     "our_name": "",
+     "normals": {
+      "high_f": 65.8,
+      "low_f": 43.0,
+      "precip_in": 0.57,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "5.3",
+     "start": "04-15",
+     "end": "04-19",
+     "our_name": "",
+     "normals": {
+      "high_f": 67.6,
+      "low_f": 44.6,
+      "precip_in": 0.57,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "season": "Spring",
+   "name": "Grain rains",
+   "our_name": "",
+   "start": "04-20",
+   "end": "05-04",
+   "days": 15,
+   "normals": {
+    "high_f": 70.6,
+    "low_f": 47.6,
+    "precip_in": 1.75,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "6.1",
+     "start": "04-20",
+     "end": "04-24",
+     "our_name": "",
+     "normals": {
+      "high_f": 69.1,
+      "low_f": 46.1,
+      "precip_in": 0.57,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "6.2",
+     "start": "04-25",
+     "end": "04-29",
+     "our_name": "",
+     "normals": {
+      "high_f": 70.6,
+      "low_f": 47.6,
+      "precip_in": 0.57,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "6.3",
+     "start": "04-30",
+     "end": "05-04",
+     "our_name": "",
+     "normals": {
+      "high_f": 72.1,
+      "low_f": 49.1,
+      "precip_in": 0.62,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "season": "Summer",
+   "name": "Beginning of summer",
+   "our_name": "",
+   "start": "05-05",
+   "end": "05-20",
+   "days": 16,
+   "normals": {
+    "high_f": 75.2,
+    "low_f": 52.3,
+    "precip_in": 2.01,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "7.1",
+     "start": "05-05",
+     "end": "05-09",
+     "our_name": "",
+     "normals": {
+      "high_f": 73.6,
+      "low_f": 50.6,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "7.2",
+     "start": "05-10",
+     "end": "05-14",
+     "our_name": "",
+     "normals": {
+      "high_f": 75.1,
+      "low_f": 52.1,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "7.3",
+     "start": "05-15",
+     "end": "05-20",
+     "our_name": "",
+     "normals": {
+      "high_f": 76.6,
+      "low_f": 53.8,
+      "precip_in": 0.75,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "season": "Summer",
+   "name": "Lesser ripening",
+   "our_name": "",
+   "start": "05-21",
+   "end": "06-05",
+   "days": 16,
+   "normals": {
+    "high_f": 79.5,
+    "low_f": 57.4,
+    "precip_in": 2.05,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "8.1",
+     "start": "05-21",
+     "end": "05-25",
+     "our_name": "",
+     "normals": {
+      "high_f": 78.1,
+      "low_f": 55.6,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "8.2",
+     "start": "05-26",
+     "end": "05-30",
+     "our_name": "",
+     "normals": {
+      "high_f": 79.4,
+      "low_f": 57.2,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "8.3",
+     "start": "05-31",
+     "end": "06-05",
+     "our_name": "",
+     "normals": {
+      "high_f": 80.8,
+      "low_f": 59.0,
+      "precip_in": 0.79,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "season": "Summer",
+   "name": "Grain beards and seeds",
+   "our_name": "",
+   "start": "06-06",
+   "end": "06-20",
+   "days": 15,
+   "normals": {
+    "high_f": 83.4,
+    "low_f": 62.2,
+    "precip_in": 2.0,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "9.1",
+     "start": "06-06",
+     "end": "06-10",
+     "our_name": "",
+     "normals": {
+      "high_f": 82.2,
+      "low_f": 60.7,
+      "precip_in": 0.67,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "9.2",
+     "start": "06-11",
+     "end": "06-15",
+     "our_name": "",
+     "normals": {
+      "high_f": 83.5,
+      "low_f": 62.4,
+      "precip_in": 0.67,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "9.3",
+     "start": "06-16",
+     "end": "06-20",
+     "our_name": "",
+     "normals": {
+      "high_f": 84.5,
+      "low_f": 63.5,
+      "precip_in": 0.67,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "season": "Summer",
+   "name": "Summer solstice",
+   "our_name": "",
+   "start": "06-21",
+   "end": "07-06",
+   "days": 16,
+   "normals": {
+    "high_f": 86.2,
+    "low_f": 65.2,
+    "precip_in": 2.2,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "10.1",
+     "start": "06-21",
+     "end": "06-25",
+     "our_name": "",
+     "normals": {
+      "high_f": 85.3,
+      "low_f": 64.3,
+      "precip_in": 0.67,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "10.2",
+     "start": "06-26",
+     "end": "06-30",
+     "our_name": "",
+     "normals": {
+      "high_f": 86.2,
+      "low_f": 65.2,
+      "precip_in": 0.67,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "10.3",
+     "start": "07-01",
+     "end": "07-06",
+     "our_name": "",
+     "normals": {
+      "high_f": 87.1,
+      "low_f": 66.1,
+      "precip_in": 0.87,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "season": "Summer",
+   "name": "Lesser heat",
+   "our_name": "",
+   "start": "07-07",
+   "end": "07-22",
+   "days": 16,
+   "normals": {
+    "high_f": 88.5,
+    "low_f": 67.5,
+    "precip_in": 2.32,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "11.1",
+     "start": "07-07",
+     "end": "07-11",
+     "our_name": "",
+     "normals": {
+      "high_f": 88.0,
+      "low_f": 67.0,
+      "precip_in": 0.73,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "11.2",
+     "start": "07-12",
+     "end": "07-16",
+     "our_name": "",
+     "normals": {
+      "high_f": 88.8,
+      "low_f": 67.8,
+      "precip_in": 0.73,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "11.3",
+     "start": "07-17",
+     "end": "07-22",
+     "our_name": "",
+     "normals": {
+      "high_f": 88.7,
+      "low_f": 67.7,
+      "precip_in": 0.87,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "season": "Summer",
+   "name": "Greater heat",
+   "our_name": "",
+   "start": "07-23",
+   "end": "08-07",
+   "days": 16,
+   "normals": {
+    "high_f": 88.0,
+    "low_f": 67.0,
+    "precip_in": 2.23,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "12.1",
+     "start": "07-23",
+     "end": "07-27",
+     "our_name": "",
+     "normals": {
+      "high_f": 88.4,
+      "low_f": 67.4,
+      "precip_in": 0.73,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "12.2",
+     "start": "07-28",
+     "end": "08-01",
+     "our_name": "",
+     "normals": {
+      "high_f": 88.0,
+      "low_f": 67.0,
+      "precip_in": 0.71,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "12.3",
+     "start": "08-02",
+     "end": "08-07",
+     "our_name": "",
+     "normals": {
+      "high_f": 87.7,
+      "low_f": 66.7,
+      "precip_in": 0.79,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "season": "Autumn",
+   "name": "Beginning of autumn",
+   "our_name": "",
+   "start": "08-08",
+   "end": "08-22",
+   "days": 15,
+   "normals": {
+    "high_f": 86.7,
+    "low_f": 65.7,
+    "precip_in": 1.98,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "13.1",
+     "start": "08-08",
+     "end": "08-12",
+     "our_name": "",
+     "normals": {
+      "high_f": 87.3,
+      "low_f": 66.3,
+      "precip_in": 0.66,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "13.2",
+     "start": "08-13",
+     "end": "08-17",
+     "our_name": "",
+     "normals": {
+      "high_f": 86.9,
+      "low_f": 65.9,
+      "precip_in": 0.66,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "13.3",
+     "start": "08-18",
+     "end": "08-22",
+     "our_name": "",
+     "normals": {
+      "high_f": 85.9,
+      "low_f": 64.9,
+      "precip_in": 0.66,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "season": "Autumn",
+   "name": "Heat ends",
+   "our_name": "",
+   "start": "08-23",
+   "end": "09-07",
+   "days": 16,
+   "normals": {
+    "high_f": 83.5,
+    "low_f": 62.5,
+    "precip_in": 2.22,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "14.1",
+     "start": "08-23",
+     "end": "08-27",
+     "our_name": "",
+     "normals": {
+      "high_f": 84.7,
+      "low_f": 63.7,
+      "precip_in": 0.66,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "14.2",
+     "start": "08-28",
+     "end": "09-01",
+     "our_name": "",
+     "normals": {
+      "high_f": 83.6,
+      "low_f": 62.6,
+      "precip_in": 0.68,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "14.3",
+     "start": "09-02",
+     "end": "09-07",
+     "our_name": "",
+     "normals": {
+      "high_f": 82.4,
+      "low_f": 61.4,
+      "precip_in": 0.88,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "season": "Autumn",
+   "name": "White dew",
+   "our_name": "",
+   "start": "09-08",
+   "end": "09-22",
+   "days": 15,
+   "normals": {
+    "high_f": 79.7,
+    "low_f": 58.7,
+    "precip_in": 2.2,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "15.1",
+     "start": "09-08",
+     "end": "09-12",
+     "our_name": "",
+     "normals": {
+      "high_f": 81.1,
+      "low_f": 60.1,
+      "precip_in": 0.73,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "15.2",
+     "start": "09-13",
+     "end": "09-17",
+     "our_name": "",
+     "normals": {
+      "high_f": 79.9,
+      "low_f": 58.9,
+      "precip_in": 0.73,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "15.3",
+     "start": "09-18",
+     "end": "09-22",
+     "our_name": "",
+     "normals": {
+      "high_f": 78.0,
+      "low_f": 57.0,
+      "precip_in": 0.73,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "season": "Autumn",
+   "name": "Autumn equinox",
+   "our_name": "",
+   "start": "09-23",
+   "end": "10-07",
+   "days": 15,
+   "normals": {
+    "high_f": 74.0,
+    "low_f": 53.0,
+    "precip_in": 2.05,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "16.1",
+     "start": "09-23",
+     "end": "09-27",
+     "our_name": "",
+     "normals": {
+      "high_f": 76.0,
+      "low_f": 55.0,
+      "precip_in": 0.73,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "16.2",
+     "start": "09-28",
+     "end": "10-02",
+     "our_name": "",
+     "normals": {
+      "high_f": 74.0,
+      "low_f": 53.0,
+      "precip_in": 0.69,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "16.3",
+     "start": "10-03",
+     "end": "10-07",
+     "our_name": "",
+     "normals": {
+      "high_f": 72.0,
+      "low_f": 51.0,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "season": "Autumn",
+   "name": "Cold dew",
+   "our_name": "",
+   "start": "10-08",
+   "end": "10-22",
+   "days": 15,
+   "normals": {
+    "high_f": 68.1,
+    "low_f": 47.1,
+    "precip_in": 1.89,
+    "snow_in": 0.0
+   },
+   "subs": [
+    {
+     "id": "17.1",
+     "start": "10-08",
+     "end": "10-12",
+     "our_name": "",
+     "normals": {
+      "high_f": 70.0,
+      "low_f": 49.0,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "17.2",
+     "start": "10-13",
+     "end": "10-17",
+     "our_name": "",
+     "normals": {
+      "high_f": 68.0,
+      "low_f": 47.0,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "17.3",
+     "start": "10-18",
+     "end": "10-22",
+     "our_name": "",
+     "normals": {
+      "high_f": 66.2,
+      "low_f": 45.4,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "season": "Autumn",
+   "name": "Frost falls",
+   "our_name": "",
+   "start": "10-23",
+   "end": "11-06",
+   "days": 15,
+   "normals": {
+    "high_f": 62.7,
+    "low_f": 42.2,
+    "precip_in": 1.75,
+    "snow_in": 0.02
+   },
+   "subs": [
+    {
+     "id": "18.1",
+     "start": "10-23",
+     "end": "10-27",
+     "our_name": "",
+     "normals": {
+      "high_f": 64.5,
+      "low_f": 43.8,
+      "precip_in": 0.63,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "18.2",
+     "start": "10-28",
+     "end": "11-01",
+     "our_name": "",
+     "normals": {
+      "high_f": 62.7,
+      "low_f": 42.2,
+      "precip_in": 0.61,
+      "snow_in": 0.0
+     }
+    },
+    {
+     "id": "18.3",
+     "start": "11-02",
+     "end": "11-06",
+     "our_name": "",
+     "normals": {
+      "high_f": 60.9,
+      "low_f": 40.5,
+      "precip_in": 0.52,
+      "snow_in": 0.02
+     }
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "season": "Winter",
+   "name": "Beginning of winter",
+   "our_name": "",
+   "start": "11-07",
+   "end": "11-21",
+   "days": 15,
+   "normals": {
+    "high_f": 57.4,
+    "low_f": 37.4,
+    "precip_in": 1.55,
+    "snow_in": 0.05
+   },
+   "subs": [
+    {
+     "id": "19.1",
+     "start": "11-07",
+     "end": "11-11",
+     "our_name": "",
+     "normals": {
+      "high_f": 59.1,
+      "low_f": 38.9,
+      "precip_in": 0.52,
+      "snow_in": 0.02
+     }
+    },
+    {
+     "id": "19.2",
+     "start": "11-12",
+     "end": "11-16",
+     "our_name": "",
+     "normals": {
+      "high_f": 57.4,
+      "low_f": 37.3,
+      "precip_in": 0.52,
+      "snow_in": 0.02
+     }
+    },
+    {
+     "id": "19.3",
+     "start": "11-17",
+     "end": "11-21",
+     "our_name": "",
+     "normals": {
+      "high_f": 55.8,
+      "low_f": 36.1,
+      "precip_in": 0.52,
+      "snow_in": 0.02
+     }
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "season": "Winter",
+   "name": "Lesser snow",
+   "our_name": "",
+   "start": "11-22",
+   "end": "12-06",
+   "days": 15,
+   "normals": {
+    "high_f": 52.8,
+    "low_f": 33.7,
+    "precip_in": 1.65,
+    "snow_in": 0.51
+   },
+   "subs": [
+    {
+     "id": "20.1",
+     "start": "11-22",
+     "end": "11-26",
+     "our_name": "",
+     "normals": {
+      "high_f": 54.3,
+      "low_f": 34.9,
+      "precip_in": 0.52,
+      "snow_in": 0.02
+     }
+    },
+    {
+     "id": "20.2",
+     "start": "11-27",
+     "end": "12-01",
+     "our_name": "",
+     "normals": {
+      "high_f": 52.8,
+      "low_f": 33.7,
+      "precip_in": 0.53,
+      "snow_in": 0.09
+     }
+    },
+    {
+     "id": "20.3",
+     "start": "12-02",
+     "end": "12-06",
+     "our_name": "",
+     "normals": {
+      "high_f": 51.3,
+      "low_f": 32.6,
+      "precip_in": 0.6,
+      "snow_in": 0.4
+     }
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "season": "Winter",
+   "name": "Greater snow",
+   "our_name": "",
+   "start": "12-07",
+   "end": "12-21",
+   "days": 15,
+   "normals": {
+    "high_f": 48.5,
+    "low_f": 30.3,
+    "precip_in": 1.79,
+    "snow_in": 1.21
+   },
+   "subs": [
+    {
+     "id": "21.1",
+     "start": "12-07",
+     "end": "12-11",
+     "our_name": "",
+     "normals": {
+      "high_f": 49.8,
+      "low_f": 31.4,
+      "precip_in": 0.6,
+      "snow_in": 0.4
+     }
+    },
+    {
+     "id": "21.2",
+     "start": "12-12",
+     "end": "12-16",
+     "our_name": "",
+     "normals": {
+      "high_f": 48.3,
+      "low_f": 30.2,
+      "precip_in": 0.6,
+      "snow_in": 0.4
+     }
+    },
+    {
+     "id": "21.3",
+     "start": "12-17",
+     "end": "12-21",
+     "our_name": "",
+     "normals": {
+      "high_f": 47.4,
+      "low_f": 29.4,
+      "precip_in": 0.6,
+      "snow_in": 0.4
+     }
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "season": "Winter",
+   "name": "Winter solstice",
+   "our_name": "",
+   "start": "12-22",
+   "end": "01-04",
+   "days": 14,
+   "normals": {
+    "high_f": 45.8,
+    "low_f": 27.8,
+    "precip_in": 1.59,
+    "snow_in": 1.63
+   },
+   "subs": [
+    {
+     "id": "22.1",
+     "start": "12-22",
+     "end": "12-25",
+     "our_name": "",
+     "normals": {
+      "high_f": 46.6,
+      "low_f": 28.6,
+      "precip_in": 0.48,
+      "snow_in": 0.32
+     }
+    },
+    {
+     "id": "22.2",
+     "start": "12-26",
+     "end": "12-29",
+     "our_name": "",
+     "normals": {
+      "high_f": 46.0,
+      "low_f": 28.0,
+      "precip_in": 0.48,
+      "snow_in": 0.32
+     }
+    },
+    {
+     "id": "22.3",
+     "start": "12-30",
+     "end": "01-04",
+     "our_name": "",
+     "normals": {
+      "high_f": 45.2,
+      "low_f": 27.2,
+      "precip_in": 0.64,
+      "snow_in": 0.99
+     }
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "season": "Winter",
+   "name": "Lesser cold",
+   "our_name": "",
+   "start": "01-05",
+   "end": "01-19",
+   "days": 15,
+   "normals": {
+    "high_f": 43.7,
+    "low_f": 25.6,
+    "precip_in": 1.5,
+    "snow_in": 3.1
+   },
+   "subs": [
+    {
+     "id": "23.1",
+     "start": "01-05",
+     "end": "01-09",
+     "our_name": "",
+     "normals": {
+      "high_f": 44.3,
+      "low_f": 26.3,
+      "precip_in": 0.5,
+      "snow_in": 1.03
+     }
+    },
+    {
+     "id": "23.2",
+     "start": "01-10",
+     "end": "01-14",
+     "our_name": "",
+     "normals": {
+      "high_f": 43.5,
+      "low_f": 25.5,
+      "precip_in": 0.5,
+      "snow_in": 1.03
+     }
+    },
+    {
+     "id": "23.3",
+     "start": "01-15",
+     "end": "01-19",
+     "our_name": "",
+     "normals": {
+      "high_f": 43.2,
+      "low_f": 25.1,
+      "precip_in": 0.5,
+      "snow_in": 1.03
+     }
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "season": "Winter",
+   "name": "Greater cold",
+   "our_name": "",
+   "start": "01-20",
+   "end": "02-03",
+   "days": 15,
+   "normals": {
+    "high_f": 44.2,
+    "low_f": 25.8,
+    "precip_in": 1.51,
+    "snow_in": 3.28
+   },
+   "subs": [
+    {
+     "id": "24.1",
+     "start": "01-20",
+     "end": "01-24",
+     "our_name": "",
+     "normals": {
+      "high_f": 43.7,
+      "low_f": 25.5,
+      "precip_in": 0.5,
+      "snow_in": 1.03
+     }
+    },
+    {
+     "id": "24.2",
+     "start": "01-25",
+     "end": "01-29",
+     "our_name": "",
+     "normals": {
+      "high_f": 44.2,
+      "low_f": 25.8,
+      "precip_in": 0.5,
+      "snow_in": 1.03
+     }
+    },
+    {
+     "id": "24.3",
+     "start": "01-30",
+     "end": "02-03",
+     "our_name": "",
+     "normals": {
+      "high_f": 44.6,
+      "low_f": 26.1,
+      "precip_in": 0.51,
+      "snow_in": 1.22
+     }
+    }
+   ]
+  }
+ ]
+}
