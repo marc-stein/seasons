@@ -23,25 +23,6 @@ Everything is plain text, so the record stays readable even without the app.
 
 **Normals.** These are NOAA's 1991–2020 monthly normals for BWI (station USW00093721), about 26 km (16 mi) from Towson. They are spread into periods by interpolation, so treat them as rough.
 
-## Setup (one time)
-
-1. **Make a repository** on GitHub, for example `seasons-log`, and push these files to it:
-   ```
-   cd seasons-log
-   git init -b main
-   git add .
-   git commit -m "Start the seasons log"
-   git remote add origin https://github.com/YOUR-NAME/seasons-log.git
-   git push -u origin main
-   ```
-   The browser's drag-and-drop upload can skip the hidden `.github` folder, which is why command-line git is the safer route.
-2. **Turn on the page.** In the repository, go to Settings → Pages → Build and deployment, set Source to "Deploy from a branch," and pick `main` and `/ (root)`. The page appears at `https://YOUR-NAME.github.io/seasons-log/` within a minute or two.
-   - On a free GitHub account, Pages only works for **public** repositories, which would make the log public. To keep it private, either use a paid plan or skip Pages and run it locally (step 5).
-3. **Start the weather job.** Go to Actions → Daily weather → Run workflow. The first run backfills from February 4, 2026. After that it runs every morning on its own.
-   - If the run can't push, set Settings → Actions → General → Workflow permissions to "Read and write."
-4. **Let the page save.** Create a fine-grained personal access token: GitHub → Settings → Developer settings → Fine-grained tokens. Limit it to this one repository, with **Contents: Read and write** and nothing else. Then open the page, click Settings, and paste it in. The token is stored only in that browser.
-5. **Running it locally instead of on Pages.** From the repository folder, run `python3 -m http.server 8000` and open `http://localhost:8000`. With the token set, saves still go straight to GitHub. Run `git pull` now and then to keep the local copy current.
-
 ## Using it
 
 - **New observation:** pick a lens (light, air, sound, smell, living things, human life), optionally mark first / full / last / not yet, and write a sentence.
